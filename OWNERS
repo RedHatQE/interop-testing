@@ -2,11 +2,9 @@
 
 approvers:
   - dbasunag
-  - myakove
-  - dshchedr
+  - lukas-bednar
   - rabin-io
 reviewers:
   - dbasunag
-  - myakove
-  - dshchedr
+  - lukas-bednar
   - rabin-io
