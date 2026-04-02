@@ -1,0 +1,13 @@
+# See the OWNERS_ALIASES docs: https://git.k8s.io/community/contributors/guide/owners.md#owners_aliases
+# Read `README.md` on how to update this file!!!
+aliases:
+  cspi-qe-ocp-lp:
+    - Sau1506mya
+    - amp-rh
+    - oharan2
+    - shakyav
+    - dfrazzette
+    - danalanerh
+    - sg-rh
+    - etirta
+    - tanfengshuang

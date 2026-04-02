@@ -1,6 +1,5 @@
 # See the OWNERS docs: https://git.k8s.io/community/contributors/guide/owners.md
-
-approvers: &owner
+approvers:  &owner
   - cspi-qe-ocp-lp
 options: {}
 reviewers: *owner
