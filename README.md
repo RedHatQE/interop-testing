@@ -14,7 +14,7 @@ It may contain Group Aliases from https://github.com/openshift/release/blob/main
         explode(.) | [.approvers[], .reviewers[], .emeritus_approvers[]] | unique
     ' OWNERS)" 'with_entries(select(.key | IN($names[])))' |
     yq -p json -o yaml eval '{"aliases": .}' |
-    yq eval-all '(select(fileIndex==0) * select(fileIndex==1)) | . head_comment=""' /dev/fd/3 - |
+    yq eval-all '. as $item ireduce ({}; (. * $item)) | . head_comment=""' /dev/fd/3 - |
     column -t -s '#' -o '#' |
     sed \
         -e '1i# See the OWNERS_ALIASES docs: https://git.k8s.io/community/contributors/guide/owners.md#owners_aliases' \

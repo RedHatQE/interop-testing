@@ -1,0 +1,47 @@
+language: en-US
+early_access: false
+tone_instructions: >
+  Enforce team Best Practices strictly. Flag all violations. Skip subjective style preferences not covered by team standards.
+reviews:
+  profile: assertive
+  high_level_summary: true
+  collapse_walkthrough: false
+  review_status: true
+  auto_review:
+    enabled: true
+    drafts: false
+    auto_incremental_review: true
+  path_filters:
+    - '!**/AGENTS.md'       # A symbolic link to `.AI_INIT.md`.
+    - '!**/CLAUDE.md'       # A symbolic link to `.AI_INIT.md`.
+    - '!**/GEMINI.md'       # A symbolic link to `.AI_INIT.md`.
+    - '!**/.cursorrules'    # A symbolic link to `.AI_INIT.md`.
+    - '!**/.continuerules'  # A symbolic link to `.AI_INIT.md`.
+  path_instructions:
+    - path: "**"
+      instructions: "Apply team Best Practices as defined in `.AI_README.md`."
+chat:
+  art: false
+  auto_reply: true
+knowledge_base:
+  web_search:
+    enabled: true
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - "**/.AI_README.md"
+  learnings:
+    scope: local
+tools:
+  shellcheck:
+    enabled: true
+  hadolint:
+    enabled: true
+  actionlint:
+    enabled: true
+  ruff:
+    enabled: true
+  trivy:
+    enabled: true
+  semgrep:
+    enabled: true
