@@ -1,0 +1,26 @@
+base_images:
+  ubi-minimal:
+    name: ubi-minimal
+    namespace: ocp
+    tag: "9"
+build_root:
+  image_stream_tag:
+    name: release
+    namespace: openshift
+    tag: golang-1.22
+images:
+- context_dir: bsod-detector
+  dockerfile_path: Dockerfile
+  to: bsod-detector
+tests:
+- as: bsod-self-test
+  steps:
+    cluster_profile: aws-interop-qe
+    env:
+      BSOD_MODE: self-test
+      BUGCHECK_CODE: "0x19"
+      BUGCHECK_PARAMS: "0x3 0x0 0x0 0x0"
+    test:
+    - ref: bsod-detector-self-test
+    post:
+    - ref: bsod-detector-post-mortem

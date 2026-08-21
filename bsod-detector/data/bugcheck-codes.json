@@ -1,0 +1,114 @@
+{
+  "_comment": "Source of truth for bug-check (stop) code lookups. The dump parser reads this to translate a numeric stop code into a human-readable name and description. Keyed by the canonical 0x-prefixed 8-digit hex string. This is a curated subset covering codes the test harness produces plus the most common real-world crashes; extend as needed. Do not copy these entries into any script.",
+  "_source": "Microsoft Bug Check Code Reference (learn.microsoft.com/windows-hardware/drivers/debugger/bug-check-code-reference2).",
+  "codes": {
+    "0x0000000A": {
+      "name": "IRQL_NOT_LESS_OR_EQUAL",
+      "description": "Kernel-mode process or driver accessed memory at an IRQL that was too high. Usually an invalid memory reference by a driver."
+    },
+    "0x00000019": {
+      "name": "BAD_POOL_HEADER",
+      "description": "The pool header for a kernel memory allocation is corrupt. Causes include double frees, buffer overruns into adjacent pool blocks, and use-after-free writes."
+    },
+    "0x0000001E": {
+      "name": "KMODE_EXCEPTION_NOT_HANDLED",
+      "description": "A kernel-mode program generated an exception the error handler did not catch."
+    },
+    "0x00000050": {
+      "name": "PAGE_FAULT_IN_NONPAGED_AREA",
+      "description": "Referenced invalid system memory. Often faulty hardware (RAM) or a driver accessing freed memory."
+    },
+    "0x0000007E": {
+      "name": "SYSTEM_THREAD_EXCEPTION_NOT_HANDLED",
+      "description": "A system thread generated an exception the error handler did not catch."
+    },
+    "0x0000007F": {
+      "name": "UNEXPECTED_KERNEL_MODE_TRAP",
+      "description": "The CPU generated a trap the kernel did not expect. Parameter 1 = 0x8 is a double fault, typically from kernel stack exhaustion (stack overflow)."
+    },
+    "0x00000080": {
+      "name": "NMI_HARDWARE_FAILURE",
+      "description": "Hardware malfunction reported via non-maskable interrupt (NMI); also produced by a hardcoded breakpoint trap."
+    },
+    "0x0000009F": {
+      "name": "DRIVER_POWER_STATE_FAILURE",
+      "description": "A driver is in an inconsistent or invalid power state, typically during a power transition."
+    },
+    "0x000000BE": {
+      "name": "ATTEMPTED_WRITE_TO_READONLY_MEMORY",
+      "description": "A driver attempted to write to a read-only memory segment (e.g. its own code pages). Parameter 1 is the virtual address written."
+    },
+    "0x000000C1": {
+      "name": "SPECIAL_POOL_DETECTED_MEMORY_CORRUPTION",
+      "description": "Driver Verifier Special Pool detected memory corruption around a pool allocation. Only raised when Driver Verifier's Special Pool feature is active. Parameter 1 is the address that was being freed or corrupted."
+    },
+    "0x000000C2": {
+      "name": "BAD_POOL_CALLER",
+      "description": "A thread made a bad pool request, such as freeing the same allocation twice (double free) or freeing an already-freed pool block."
+    },
+    "0x000000C9": {
+      "name": "DRIVER_VERIFIER_IOMANAGER_VIOLATION",
+      "description": "Driver Verifier's I/O Verification detected a driver violation. Parameter 1 identifies the specific rule broken. Only raised when Driver Verifier is active."
+    },
+    "0x000000D1": {
+      "name": "DRIVER_IRQL_NOT_LESS_OR_EQUAL",
+      "description": "A driver accessed pageable (or invalid) memory at an IRQL that was too high (DISPATCH_LEVEL or above)."
+    },
+    "0x000000EF": {
+      "name": "CRITICAL_PROCESS_DIED",
+      "description": "A critical system process terminated unexpectedly."
+    },
+    "0x000000F7": {
+      "name": "DRIVER_OVERRAN_STACK_BUFFER",
+      "description": "A driver overran a stack-based buffer; the GS stack-cookie check detected corruption."
+    },
+    "0x0000003B": {
+      "name": "SYSTEM_SERVICE_EXCEPTION",
+      "description": "An exception occurred while executing a system service routine, often from corrupted code or memory."
+    },
+    "0x00000133": {
+      "name": "DPC_WATCHDOG_VIOLATION",
+      "description": "The DPC watchdog detected a single long-running DPC or an overall time-limit violation, often a stuck driver."
+    },
+    "0x00000139": {
+      "name": "KERNEL_SECURITY_CHECK_FAILURE",
+      "description": "The kernel detected corruption of a critical data structure (e.g. a stack-buffer overrun caught by /GS or Control Flow Guard). Parameter 1 identifies the check type; 0x2 = stack cookie / stack buffer overrun. On modern Windows this supersedes 0xF7 for driver stack-overrun crashes."
+    },
+    "0x0000007B": {
+      "name": "INACCESSIBLE_BOOT_DEVICE",
+      "description": "Windows lost access to the system partition during boot, often a storage-controller driver or configuration issue."
+    },
+    "0x00000124": {
+      "name": "WHEA_UNCORRECTABLE_ERROR",
+      "description": "A fatal hardware error reported through the Windows Hardware Error Architecture (WHEA)."
+    },
+    "0x0000001A": {
+      "name": "MEMORY_MANAGEMENT",
+      "description": "The memory manager detected a severe error. Parameter 1 identifies the subtype; 0x3F is a page-hash (CRC) mismatch between the page read from disk and the expected checksum, indicating storage-path data corruption."
+    },
+    "0x0000003D": {
+      "name": "INTERRUPT_EXCEPTION_NOT_HANDLED",
+      "description": "An exception occurred in an interrupt service routine (ISR) that was not handled. Often caused by register corruption in a driver's ISR path."
+    },
+    "0x0000007A": {
+      "name": "KERNEL_DATA_INPAGE_ERROR",
+      "description": "A page of kernel data could not be read into memory. Parameter 2 is the NTSTATUS; 0xC0000185 (STATUS_IO_DEVICE_ERROR) points at a storage-path failure. Common in environments with intermittent disk or SAN connectivity."
+    },
+    "0x00000109": {
+      "name": "CRITICAL_STRUCTURE_CORRUPTION",
+      "description": "The kernel detected corruption of a critical system data structure (e.g. a function-pointer table, processor control region, or object-type list). Usually hardware failure or a driver overwriting kernel memory."
+    },
+    "0x00000135": {
+      "name": "REGISTRY_FILTER_DRIVER_EXCEPTION",
+      "description": "A registry filtering driver (e.g. an antivirus minifilter) caused an unhandled exception during a registry callback. Often WdFilter.sys (Defender) on an in-page error."
+    },
+    "0x00000154": {
+      "name": "UNEXPECTED_STORE_EXCEPTION",
+      "description": "A store component caught an unexpected exception, commonly triggered by a failing disk, corrupt page file, or antivirus interference with store operations."
+    },
+    "0x00020001": {
+      "name": "HYPERVISOR_ERROR",
+      "description": "The hypervisor encountered a fatal error. Common causes include unhandled exceptions during hypercalls (e.g. TLB-flush or IPI delivery) and hardware-enforced alignment faults (split-lock #AC) forwarded as fatal NMIs to the guest."
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "_comment": "Source of truth for crash-relevant Windows event log entries. The collector (collect-guest.ps1 / PsLogList wrapper) reads this to know which log/source/ID pairs to extract for the crash timeline. Do not hardcode these IDs in any script.",
+  "_source": "Windows System/Application event log; standard BugCheck and shutdown auditing events.",
+  "events": [
+    {
+      "log": "System",
+      "source": "Microsoft-Windows-WER-SystemErrorReporting",
+      "eventId": 1001,
+      "meaning": "BugCheck record: the computer rebooted from a bug check. Contains the stop code and dump-file path. Primary post-mortem signal."
+    },
+    {
+      "log": "System",
+      "source": "EventLog",
+      "eventId": 6008,
+      "meaning": "Unexpected shutdown (dirty shutdown). Confirms an ungraceful stop and its timestamp."
+    },
+    {
+      "log": "System",
+      "source": "Microsoft-Windows-Kernel-Power",
+      "eventId": 41,
+      "meaning": "Kernel-Power: system rebooted without cleanly shutting down first. Correlates with a crash or hard reset."
+    },
+    {
+      "log": "System",
+      "source": "Microsoft-Windows-Kernel-General",
+      "eventId": 12,
+      "meaning": "Operating system started (boot time). Anchors the reboot that followed the crash."
+    },
+    {
+      "log": "System",
+      "source": "Microsoft-Windows-Kernel-General",
+      "eventId": 13,
+      "meaning": "Operating system is shutting down. Its presence (or absence) distinguishes a clean shutdown from a crash."
+    },
+    {
+      "log": "Application",
+      "source": "Windows Error Reporting",
+      "eventId": 1001,
+      "meaning": "WER report bucket, may include a LiveKernelEvent / BlueScreen bucket with faulting-module details."
+    },
+    {
+      "log": "System",
+      "source": "Microsoft-Windows-WHEA-Logger",
+      "eventId": 18,
+      "meaning": "WHEA fatal hardware error. Relevant when the stop code is 0x124 (WHEA_UNCORRECTABLE_ERROR)."
+    }
+  ]
+}

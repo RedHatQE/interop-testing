@@ -1,0 +1,30 @@
+{
+  "_comment": "Source of truth for crash-dump configuration. The configure step (configure-dumps.ps1) applies these registry values under CrashControl so a dump is actually written when a BSOD occurs; the collector verifies the live settings match before trusting that a dump would have been produced. 'crashDumpType' values follow the CrashDumpEnabled registry semantics.",
+  "_source": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\CrashControl. See Microsoft docs: 'Overview of memory dump file options for Windows'.",
+  "registryPath": "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\CrashControl",
+  "crashDumpTypes": {
+    "none":      { "CrashDumpEnabled": 0, "description": "No dump written." },
+    "complete":  { "CrashDumpEnabled": 1, "description": "Complete memory dump: entire physical memory. Requires page file >= RAM size (+1MB) or a dedicated dump file." },
+    "kernel":    { "CrashDumpEnabled": 2, "description": "Kernel memory dump: kernel-mode read/write pages only. Good default for driver crashes." },
+    "small":     { "CrashDumpEnabled": 3, "description": "Small (mini) dump, 64KB-ish, written to %SystemRoot%\\Minidump. Minimum useful dump." },
+    "automatic": { "CrashDumpEnabled": 7, "description": "Automatic memory dump (Win8+): like kernel dump but lets the OS manage page-file sizing." }
+  },
+  "recommended": {
+    "crashDumpType": "kernel",
+    "values": {
+      "CrashDumpEnabled": 2,
+      "AlwaysKeepMemoryDump": 1,
+      "Overwrite": 1,
+      "LogEvent": 1,
+      "AutoReboot": 1,
+      "MinidumpDir": "%SystemRoot%\\Minidump",
+      "DumpFile": "%SystemRoot%\\MEMORY.DMP"
+    },
+    "notes": "AlwaysKeepMemoryDump=1 stops Windows from deleting MEMORY.DMP on low disk. AutoReboot=1 lets an unattended test host recover automatically. For repeated test runs also enable minidumps so each crash leaves a small artifact even if MEMORY.DMP is overwritten."
+  },
+  "pageFile": {
+    "path": "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+    "value": "PagingFiles",
+    "notes": "A complete dump needs a system-managed or fixed page file on the system drive at least as large as physical RAM (+1MB). Kernel/automatic dumps need less but still require a page file on the system volume, or a DedicatedDumpFile configured under CrashControl."
+  }
+}
