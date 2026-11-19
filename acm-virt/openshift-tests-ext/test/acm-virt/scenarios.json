@@ -1,0 +1,1454 @@
+[
+  {
+    "name": "[sig-acm] ACM Hub is installed and healthy",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/check-acm-hub.sh"
+    ],
+    "tags": [
+      "SMOKE",
+      "acm-virt-cclm"
+    ],
+    "timeout": "5m"
+  },
+  {
+    "name": "[sig-cnv] CNV installed on hub",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/check-cnv-installed.sh"
+    ],
+    "tags": [
+      "SMOKE",
+      "acm-virt-cclm"
+    ],
+    "timeout": "5m"
+  },
+  {
+    "name": "[sig-cnv] CNV installed on spoke-1",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/check-cnv-installed.sh"
+    ],
+    "tags": [
+      "SMOKE",
+      "acm-virt-cclm",
+      "acm-virt-cclm-2spoke",
+      "acm-virt-cnv-upgrade"
+    ],
+    "timeout": "5m",
+    "envVars": {
+      "SPOKE_INDEX": "1"
+    }
+  },
+  {
+    "name": "[sig-cnv] CNV installed on spoke-2",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/check-cnv-installed.sh"
+    ],
+    "tags": [
+      "SMOKE",
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "5m",
+    "envVars": {
+      "SPOKE_INDEX": "2"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Preflight: Providers and Maps Ready",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Preflight: Providers and Maps Ready"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Preflight: DecentralizedLiveMigration Gates",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Preflight: DecentralizedLiveMigration Gates"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Preflight: Sync Controllers Available (src + dst)",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Preflight: Sync Controllers Available (src + dst)"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Preflight: MTV CCLM Feature Gate Active",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Preflight: MTV CCLM Feature Gate Active"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Preflight: Submariner No Globalnet",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Preflight: Submariner No Globalnet"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Preflight: Provider Inventory Refresh",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Preflight: Provider Inventory Refresh"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Preflight: All Source VMs Running",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Preflight: All Source VMs Running"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Preflight: VM Storage Class Mapped",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Preflight: VM Storage Class Mapped"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Pre-migration: Cleanup stale destination resources",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Pre-migration: Cleanup stale destination resources"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Migration: Apply Plan (5 VMs)",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Migration: Apply Plan (5 VMs)"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Migration: Plan Ready",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Migration: Plan Ready"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Migration: Apply Migration",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Migration: Apply Migration"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Migration: Succeeded",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Migration: Succeeded"
+    }
+  },
+  {
+    "name": "[spoke-to-hub] Verification: All Destination VMIs Running",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[spoke-to-hub] Verification: All Destination VMIs Running"
+    }
+  },
+  {
+    "name": "[both] Post-leg-1: Cleanup source spoke VM resources",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[both] Post-leg-1: Cleanup source spoke VM resources"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Preflight: Providers and Maps Ready",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Preflight: Providers and Maps Ready"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Preflight: DecentralizedLiveMigration Gates",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Preflight: DecentralizedLiveMigration Gates"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Preflight: Sync Controllers Available (src + dst)",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Preflight: Sync Controllers Available (src + dst)"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Preflight: MTV CCLM Feature Gate Active",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Preflight: MTV CCLM Feature Gate Active"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Preflight: Submariner No Globalnet",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Preflight: Submariner No Globalnet"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Preflight: Provider Inventory Refresh",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Preflight: Provider Inventory Refresh"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Preflight: All Source VMs Running",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Preflight: All Source VMs Running"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Preflight: VM Storage Class Mapped",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Preflight: VM Storage Class Mapped"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Pre-migration: Cleanup stale destination resources",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Pre-migration: Cleanup stale destination resources"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Migration: Apply Plan (5 VMs)",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Migration: Apply Plan (5 VMs)"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Migration: Plan Ready",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Migration: Plan Ready"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Migration: Apply Migration",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Migration: Apply Migration"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Migration: Succeeded",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Migration: Succeeded"
+    }
+  },
+  {
+    "name": "[hub-to-spoke-return] Verification: All Destination VMIs Running",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "[hub-to-spoke-return] Verification: All Destination VMIs Running"
+    }
+  },
+  {
+    "name": "Verification: Destination VMIs Running",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "Verification: Destination VMIs Running"
+    }
+  },
+  {
+    "name": "Verification: Destination VM runStrategy",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "Verification: Destination VM runStrategy"
+    }
+  },
+  {
+    "name": "Verification: Source VMIM Not Failed",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "Verification: Source VMIM Not Failed"
+    }
+  },
+  {
+    "name": "Verification: VM SSH Port Probe",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "Verification: VM SSH Port Probe"
+    }
+  },
+  {
+    "name": "Verification: Destination SSH Login",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "Verification: Destination SSH Login"
+    }
+  },
+  {
+    "name": "Verification: VM Data Integrity",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "Verification: VM Data Integrity"
+    }
+  },
+  {
+    "name": "Verification: Guest Disk I/O",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "Verification: Guest Disk I/O"
+    }
+  },
+  {
+    "name": "Verification: Guest Network Reachability",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "Verification: Guest Network Reachability"
+    }
+  },
+  {
+    "name": "Verification: PVC Attachment",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "Verification: PVC Attachment"
+    }
+  },
+  {
+    "name": "Verification: PVC Integrity",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-virt-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm"
+    ],
+    "timeout": "45m",
+    "envVars": {
+      "CCLM_CASE": "Verification: PVC Integrity"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Preflight: Providers and Maps Ready",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Preflight: Providers and Maps Ready"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Preflight: DecentralizedLiveMigration Gates",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Preflight: DecentralizedLiveMigration Gates"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Preflight: Sync Controllers Available",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Preflight: Sync Controllers Available"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Preflight: MTV CCLM Feature Gate Active",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Preflight: MTV CCLM Feature Gate Active"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Preflight: Submariner No Globalnet",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Preflight: Submariner No Globalnet"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Preflight: Provider Inventory Refresh",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Preflight: Provider Inventory Refresh"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Preflight: Source VMs Running",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Preflight: Source VMs Running"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Preflight: VM Storage Classes Mapped",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Preflight: VM Storage Classes Mapped"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Migration: Apply Plan",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Migration: Apply Plan"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Migration: Plan Ready",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Migration: Plan Ready"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Migration: Apply Migration",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Migration: Apply Migration"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Migration: Succeeded",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Migration: Succeeded"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Verification: Destination VMIs Running",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Verification: Destination VMIs Running"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Verification: Destination VM runStrategy",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Verification: Destination VM runStrategy"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Verification: Source VMIM Not Failed",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Verification: Source VMIM Not Failed"
+    }
+  },
+  {
+    "name": "[cclm-live-migration] Verification: VM SSH Port Probe",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration] Verification: VM SSH Port Probe"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify] Verification: Destination VMIs Running",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify] Verification: Destination VMIs Running"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify] Verification: Destination VM runStrategy",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify] Verification: Destination VM runStrategy"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify] Verification: Source VMIM Not Failed",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify] Verification: Source VMIM Not Failed"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify] Verification: VM SSH Port Probe",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify] Verification: VM SSH Port Probe"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify] Verification: Destination SSH Login",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify] Verification: Destination SSH Login"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify] Verification: VM Data Integrity",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify] Verification: VM Data Integrity"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify] Verification: Guest Disk I/O",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify] Verification: Guest Disk I/O"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify] Verification: Guest Network Reachability",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify] Verification: Guest Network Reachability"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify] Verification: PVC Attachment",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify] Verification: PVC Attachment"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify] Verification: PVC Integrity",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify] Verification: PVC Integrity"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Preflight: Providers and Maps Ready",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Preflight: Providers and Maps Ready"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Preflight: DecentralizedLiveMigration Gates",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Preflight: DecentralizedLiveMigration Gates"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Preflight: Sync Controllers Available",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Preflight: Sync Controllers Available"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Preflight: MTV CCLM Feature Gate Active",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Preflight: MTV CCLM Feature Gate Active"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Preflight: Submariner No Globalnet",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Preflight: Submariner No Globalnet"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Preflight: Provider Inventory Refresh",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Preflight: Provider Inventory Refresh"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Preflight: Source VMs Running",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Preflight: Source VMs Running"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Preflight: VM Storage Classes Mapped",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Preflight: VM Storage Classes Mapped"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Pre-migration: Cleanup stale destination resources",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Pre-migration: Cleanup stale destination resources"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Migration: Apply Plan",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Migration: Apply Plan"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Migration: Plan Ready",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Migration: Plan Ready"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Migration: Apply Migration",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Migration: Apply Migration"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Migration: Succeeded",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Migration: Succeeded"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Verification: Destination VMIs Running",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Verification: Destination VMIs Running"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Verification: Destination VM runStrategy",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Verification: Destination VM runStrategy"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Verification: Source VMIM Not Failed",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Verification: Source VMIM Not Failed"
+    }
+  },
+  {
+    "name": "[cclm-live-migration-return] Verification: VM SSH Port Probe",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-live-migration-return] Verification: VM SSH Port Probe"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify-return] Verification: Destination VMIs Running",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify-return] Verification: Destination VMIs Running"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify-return] Verification: Destination VM runStrategy",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify-return] Verification: Destination VM runStrategy"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify-return] Verification: Source VMIM Not Failed",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify-return] Verification: Source VMIM Not Failed"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify-return] Verification: VM SSH Port Probe",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify-return] Verification: VM SSH Port Probe"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify-return] Verification: Destination SSH Login",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify-return] Verification: Destination SSH Login"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify-return] Verification: VM Data Integrity",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify-return] Verification: VM Data Integrity"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify-return] Verification: Guest Disk I/O",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify-return] Verification: Guest Disk I/O"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify-return] Verification: Guest Network Reachability",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify-return] Verification: Guest Network Reachability"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify-return] Verification: PVC Attachment",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify-return] Verification: PVC Attachment"
+    }
+  },
+  {
+    "name": "[cclm-migration-verify-return] Verification: PVC Integrity",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cclm-2spoke-test.sh"
+    ],
+    "tags": [
+      "acm-virt-cclm-2spoke"
+    ],
+    "timeout": "90m",
+    "envVars": {
+      "CCLM_CASE": "[cclm-migration-verify-return] Verification: PVC Integrity"
+    }
+  },
+  {
+    "name": "[sig-cnv] OpenShift Virtualization upgrade",
+    "entrypoint": "/bin/bash",
+    "args": [
+      "-c",
+      "${INTEROP_SCRIPTS_DIR}/run-cnv-upgrade-tests.sh"
+    ],
+    "tags": [
+      "acm-virt-cnv-upgrade"
+    ],
+    "timeout": "4h"
+  }
+]
